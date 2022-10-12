@@ -1,0 +1,96 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Median house price per suburb (2010-2020)",
+    "width": 600,
+    "height": 350,
+    "projection": {"type": "albersUsa"},
+    "params": [
+    {
+    "name": "Year_selection",
+    "value": 2018,
+    "bind": {
+    "input": "range",
+    "min": 2018,
+    "max": 2022,
+    "step": 1,
+    "name": "Year: "
+    }
+    }
+    ],
+    
+    "layer": [
+    {
+    "data": {
+    "url":
+    "https://gist.githubusercontent.com/jrrickard/8755532505a40f3b8317/raw/ecd98849d3a5f4502b773b986254f19af3b8d8fb/states_usa.json",
+    "format": {"type": "topojson", "feature":
+    "states"}
+    },
+    "transform": [
+    {
+    "calculate": "'Data is not available in ' + datum.properties.name",
+    "as": "note"
+    }
+    ],
+    "mark": {
+    "type": "geoshape",
+    "fill": "#ddd",
+    "stroke": "black",
+    "strokeWidth": 1
+    },
+    "encoding": {"tooltip": {"field": "note"}}
+    },
+    {
+    "data": {
+    "url":
+    "https://raw.githubusercontent.com/fictorenom/Homework-10/main/Sum%20Of%20Deaths%20Per%20State.csv"
+    },
+    "transform": [
+    {
+    "lookup": "State",
+    "from": {
+    "data": {
+    
+    "url":
+    "https://gist.githubusercontent.com/jrrickard/8755532505a40f3b8317/raw/ecd98849d3a5f4502b773b986254f19af3b8d8fb/states_usa.json",
+    "format": {
+    "type": "topojson",
+    "feature": "states"
+    }
+    },
+    "key": "properties.name"
+    },
+    "as": "geo"
+    },
+    {"filter": "datum.Year == Year_selection"}
+    ],
+    "mark": {"type": "geoshape", "stroke": "black", "strokeWidth":
+    0.5},
+    "encoding": {
+    "shape": {"field": "geo", "type": "geojson"},
+    "color": {
+    "field": "Deaths",
+    "type": "quantitative",
+    "title": "Deaths",
+    "scale":{"type": "threshold",
+               "domain":[1,10,20,30],
+               "range":["#fafa6e","#fed033","#ffa200","#ff6d00","#ff0000"]
+    },
+    "legend": {"format": ".2s"}
+    },
+    "tooltip": [
+    {"field": "State", "type": "nominal", "title":
+    "State"},
+    {
+    "field": "Deaths",
+    "type": "quantitative",
+    "title": "Deaths"
+    },
+    {"field": "Year", "type": "quantitative", "title":
+    "Year"}
+    ]
+    }
+    }
+    ],
+    "config": {"view": {"stroke": null}}
+    }

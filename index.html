@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+
+  
+  <!-- CSS file -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css">
+  <link rel="stylesheet" href="hello.css">
+
+</head>
+<div class = "big_box">
+    <div class = "row_box_main">
+        <div class = "main">
+            USA Shootings from 2018 - 2022
+        </div>
+    </div>
+</div>
+<div class = "big_box">
+    <div class = "row_box">
+        <div class = "small_box">
+            Throughout 2018 till 2022, <b>Texas</b> remains the top state in terms of mass shooting casualties. This is more than California despite having only 2/3 of California's population.
+        </div>
+        <div class = "long_box">
+            <div id = "bar_chart">
+                <script type="text/javascript">
+                    var spec1 = "top_deaths.json";
+                    vegaEmbed('#bar_chart', spec1).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                    }).catch(console.error);
+                  </script>
+            </div>
+        </div>
+    </div>
+    <div class = "row_box">
+        <div class = "long_box">
+            <div id = "choropleth_map">
+                <script type="text/javascript">
+                    var spec1 = "usa_map.json";
+                    vegaEmbed('#choropleth_map', spec1).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                    }).catch(console.error);
+                  </script>
+            </div>
+        </div>
+        <div class = "small_box">
+            <p><b>Texas</b> and <b>California</b> have consistently been the states with the <b>most gun deaths</b> throughout 2018 until 2022.</p>
+            <p>Both states maintained a death count of over 30 for the past 5 years with the exception of Texas which had 29 deaths in 2018.</p>
+        </div>
+    </div>
+    <div class = "row_box">
+        <div class = "small_box">
+            When sorting by states, we can see that most states tend to have an <b>upwards trend in terms of deaths</b>, which suggests that the USA is becoming less and less peaceful throughout the years.
+        </div>
+        <div class = "long_box">
+            <div id = "line_chart">
+                <script type="text/javascript">
+                    var spec1 = "homework10.vg.json";
+                    vegaEmbed('#line_chart', spec1).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                    }).catch(console.error);
+                  </script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

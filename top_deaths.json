@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "height": 350,
+    "width": 600,
+    "title": "US States with most gun deaths",
+    "data": {
+      "url": "https://raw.githubusercontent.com/fictorenom/Assignment-2/main/Top%20Deaths.csv"
+    },
+    "encoding": {
+      "x": {
+        "field": "Deaths",
+        "type": "quantitative",
+        "title":"Total Deaths" ,
+        "axis": {"domain": false, "grid": false, "ticks": false, "labels":false}
+      },
+      "y": {
+        "field": "State",
+        "type": "nominal",
+        "sort": ["Texas","California","Illinois","Florida","North Carolina","Michigan"]
+      }},
+      "layer":[{
+        "mark": "bar",
+        "encoding": {
+          "color": {
+            "condition":{"test":"datum['State'] == 'Texas'",
+            "value":"darkblue"
+            },
+            "value":"grey"
+            },
+          "opacity": {"value": 0.6},
+          "tooltip": [
+            {"field": "State", "type": "nominal"},
+            {"field": "Deaths", "type": "quantitative", "format": ","}
+        ]
+        }
+      },
+      {
+        "mark":{
+          "type": "text",
+          "align":"right",
+          "baseline": "middle",
+          "dx": -12,
+          "fontSize": 11.5,
+          "fontStyle": "italic"
+      },
+        "encoding":{
+          "text":{"field":"Deaths","type":"quantitative"},
+          "color":{"value":"black"},
+          "tooltip": [
+            {"field": "State", "type": "nominal"},
+            {"field": "Deaths", "type": "quantitative", "format": ","}
+          ]
+        }
+      }
+      ],
+      "config": {"view": {"stroke": null}}   
+  }
