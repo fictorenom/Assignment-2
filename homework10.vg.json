@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "height": 350,
-  "width": 600,
+  "width": 450,
   "title": "US States Gun Deaths Per Year (2018-2022)",
   "data": {
     "url": "https://raw.githubusercontent.com/fictorenom/Homework-10/main/Sum%20Of%20Deaths%20Per%20State.csv"
